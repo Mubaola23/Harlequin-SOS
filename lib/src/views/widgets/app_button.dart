@@ -9,6 +9,7 @@ class AppButton extends StatelessWidget {
   final bool isLoading;
   final String label;
   final EdgeInsets padding;
+  final Function func;
 
   const AppButton({
     Key key,
@@ -16,6 +17,7 @@ class AppButton extends StatelessWidget {
     this.color = kPrimaryColor,
     this.textColor = Colors.white,
     this.isLoading = false,
+    this.func,
     this.padding = const EdgeInsets.symmetric(
       vertical: 16,
     ),
