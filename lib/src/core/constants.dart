@@ -7,12 +7,6 @@ const kBlackColor = Colors.black;
 
 const kWhiteColor = Colors.white;
 
-const kErrorColor = Colors.red;
-
-const kHintColor = Color(0xFF6F6565);
-
-const kTextFieldFillColor = Color(0x80E5E5E5);
-
 /// App TextStyles
 const kHeadingTextStyle = TextStyle(
   fontSize: 20,

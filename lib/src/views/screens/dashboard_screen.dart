@@ -74,14 +74,18 @@ class _DashboardScreenState extends State<DashboardScreen>
   static const _inactivityTimeout = Duration(seconds: 5);
   Timer _keepAliveTimer;
 
-  void _keepAlive(bool visible) {
+  String _keepAlive(bool visible) {
     _keepAliveTimer?.cancel();
     if (visible) {
       _keepAliveTimer = null;
     } else {
       _keepAliveTimer = Timer(
         _inactivityTimeout,
-        () {},
+        () {
+          AppLifecycleState.inactive;
+
+          AppLifecycleState.detached;
+        },
       );
     }
   }
@@ -127,9 +131,8 @@ class _DashboardScreenState extends State<DashboardScreen>
     }
   }
 
-  callApi(String clientLatitude, String clientLongitude, String clientSituation,
-      String clientLga) async {
-//    await Get.find<DataConnectionCheckerService>().checkConnection();
+  Future<void> callApi(String clientLatitude, String clientLongitude,
+      String clientSituation, String clientLga) async {
     await DataConnectionCheckerService().checkConnection();
     Post post = Post(
       client_id: 'client_id',
@@ -161,11 +164,12 @@ class _DashboardScreenState extends State<DashboardScreen>
                 Text("Emergency situation has been successfully reported"),
                 kMediumVerticalSpacing,
                 AppButton(
-                    onPressed: () => Navigator.pop(context),
-                    func: () {
-                      startKeepAlive();
-                    },
-                    label: "Ok"),
+                  onPressed: () => Navigator.pop(context),
+                  label: "Ok",
+                  func: () {
+                    startKeepAlive();
+                  },
+                ),
               ],
             ),
           ),

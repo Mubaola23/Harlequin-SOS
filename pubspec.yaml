@@ -39,7 +39,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
 
-  json_serializable: ^4.1.0
+  json_serializable: ^4.0.0
 
 
 
